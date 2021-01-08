@@ -1,29 +1,36 @@
-.align {
+.align, .filter {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    background-color: green;
+    /*background-color: green;*/
+}
+
+.bookmarks {
+    flex-direction: column;
+    text-align: center;
 }
 
 .list-group {
     min-height: 100vh;
-    display: flex;
     flex-direction: column;
-    background-color: red;
+    display: flex;
+    /*background-color: red;*/
 }
 
 .center {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 15px;
     padding: 30px;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 .item {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    background-color: purple;
+    /*background-color: purple;*/
 }
 
 .scroll {
@@ -34,7 +41,7 @@
     height: 110px;
     padding: 25px;
     overflow: auto;
-    background-color: green;
+    /*background-color: green;*/
 }
 
 ul li {
@@ -46,3 +53,9 @@ ul li {
 
 }
 
+
+@media all and (min-width: 600px) {
+    body {
+      /*background-color: rgb(131, 172, 131);*/
+    }
+  }
