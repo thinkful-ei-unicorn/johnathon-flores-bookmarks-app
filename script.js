@@ -47,7 +47,7 @@ function handleNewBookmarkClick() {
 
 }
 
-function handleNewBookBookmarkButtons() {
+function handleNewBookmarkButtons() {
     // this function will be responsible for generating the bookmark rating icon
     // listen to the cancel button
         // if cancel button
@@ -88,6 +88,8 @@ function handleBookmarkScroll() {
     // this function will be responsible for when the user taps/clicks on the scroll bar
         // listen to scroll bar js
 }
+
+function handle
 
 /********** CALLBACKS **********/
 function handleBookmarks() {
