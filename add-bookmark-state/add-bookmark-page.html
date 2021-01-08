@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bookmark App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <section class="bookmarks">
+            <div>
+                <h1>Your Bookmarks</h1>
+                <h2>This will display when the user clicks on new bookmark button</h2>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="align"></section>
+            <div class="bookmark-form">
+                <div class="center">
+                    <div class="actions">
+                        <fieldset>
+                            <form id="js-bookmark-form">
+                                <label for="bookmark-name-entry">Add New Bookmark</label>
+                                <br>
+                                <input type="text" name="bookmark-name-entry" class="js-form-list-entry"
+                                    placeholder="https://www.iafp.org">
+                                <br>
+                                <div class="js-edit-bookmark">
+                                    <input class="bookmark-title-text" type="text"
+                                        value="${BOOKMARK TITLE(item.name})" /><span>EDIT
+                                        ICON</span>
+                                </div>
+                                <div>
+                                    **** ratingIcon ****
+                                </div>
+                                <div class="text-area">
+                                    <textarea id="bookmark-input" name="bookmark-input" maxlength="99"
+                                        placeholder="What are you looking to get coded?" required></textarea>
+                                    <!-- other form fields go here -->
+                                    <div class="button-actions">
+                                        <div class="add-bookmark-buttons">
+                                            <button type="submit" id="cancel">Cancel</button>
+                                            <span>
+                                                <button type="submit" id="create">Create</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bookmark App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <section class="bookmarks">
+            <h1>Your Bookmarks</h1>
+            <h2>This will display when there is more than 1 book mark in the data storage</h2>
+        </section>
+    </header>
+
+    <section class="align">
+
+        <main>
+
+            <div class="filter">
+                <div class="actions">
+                    <button id="createNew"> New</span value=""></button>
+                    <label for="bookmarks">Filter By:</label>
+                    <select name="bookmarks" id="bookmarks" size="1">
+                        <option value="rating-1">1<span> rating-value</span></option>
+                        <option value="rating-2">2<span> rating-value</span></option>
+                        <option value="rating-3">3<span> rating-value</span></option>
+                        <option value="rating-4">4<span> rating-value</span></option>
+                        <option value="rating-5">5<span> rating-value</span></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bookmarks list-group js-condensed">
+                <div class="center">
+                    <ul class="item">
+                        <li><span>Title 1</span> "rating-value"</li>
+                    </ul>
+                    <ul class="item">
+                        <li><span>Title 2</span> "rating-value"</li>
+                    </ul>
+                    <ul class="item">
+                        <li><span>Title 3</span> "rating-value"</li>
+                    </ul>
+                    <ul class="item">
+                        <li><span>Title 4</span> "rating-value"</li>
+                    </ul>
+                    <ul class="item">
+                        <li><span>Title 5</span> "rating-value"</li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <footer></footer>
+
+
+    <script src="./landing-state-with-list.js"></script>
+</body>
+
+</html>
