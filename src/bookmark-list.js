@@ -70,7 +70,7 @@ function generateMainUI() {
 
 //generates the list of added bookmarks, with ability to expand with extra details
 function generateBookmarkElement(bookmark) {
-  let rating = '';
+  let rating;
   if (bookmark.rating === null) {
     rating = 'Was not Rated';
   }
@@ -85,11 +85,11 @@ function generateBookmarkElement(bookmark) {
   else {
     description = bookmark.desc;
   }
-  let bookmarkList = `<div class="list-group js-bookmark-item" data-item-id="${bookmark.id}">    
+  let bookmarkList = `<div class="list-group js-bookmark-item scroll" data-item-id="${bookmark.id}">    
 							<p>Title: ${bookmark.title}</p>
 							<p>Rating: ${rating}</p>
 							<div ${bookmark.expanded === true ? '' : 'style=\'display: none\''}>  
-								<ul class="scroll">
+								<ul>
 									<li> Visit Site: <a href="${bookmark.url}" target="_blank">${bookmark.url}</a></li>
 									<li> Description: ${description}</li>
 								</ul>
@@ -127,7 +127,8 @@ function renderError() {
   if (store.error) {
     const el = generateError(store.error);
     $('.error-message').html(el);
-  } else {
+  } 
+  else {
     $('.error-message').empty();
   }
 }
@@ -205,6 +206,13 @@ function handleDetailsButton() {
   });
 }
 
+function handleErrorClose(){
+  $('.error-message').on('click', '#cancel-error-message', () => {
+    store.setError(null);
+    renderError();
+  });
+}
+
 //renders the main page
 function render() {
   $('#js-app').html(generateMainUI());
@@ -224,6 +232,7 @@ function bindEventListeners() {
   handleFilterBookmark();
   handleDeleteBookmark();
   handleDetailsButton();
+  handleErrorClose();
 }
 
 export default {

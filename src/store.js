@@ -26,7 +26,6 @@ function findAndDelete(id) {
       currentBookmark.id !== id);
 }
 
-
 function filterByRatings() {
   //this function will be responsible for filtering bookmarks by rating
   let filteredList = this.bookmarks
@@ -39,6 +38,10 @@ function filterByRatings() {
 function setFilter(rating) {
   this.filter = rating;
 }
+
+function setError() {
+  this.error = error;
+}
 export default {
   bookmarks,
   adding,
@@ -49,4 +52,5 @@ export default {
   findAndDelete,
   filterByRatings,
   setFilter,
+  setError
 };

@@ -1,4 +1,4 @@
-let url = 'https://thinkful-list-api.herokuapp.com/johnathon/bookmarks';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/johnathon/bookmarks';
 
 function apiFetch(...args) {
   let error;
@@ -6,7 +6,7 @@ function apiFetch(...args) {
     .then((response) => {
       if (!response.ok) {
         error = {
-          code: response.status,
+          code: response.status
         };
         if (!response.headers.get('Content-Type')
           .includes('json')) {
@@ -26,12 +26,12 @@ function apiFetch(...args) {
 }
 
 function getBookmark() {
-  return apiFetch(url, {});
+  return apiFetch(BASE_URL, {});
 }
 
 function createBookmark(bookmark) {
   let newBookmark = JSON.stringify(bookmark);
-  return apiFetch(url, {
+  return apiFetch(BASE_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,8 +42,7 @@ function createBookmark(bookmark) {
 
 function updateBookmark(id, updateData) {
   let updateBookmark = JSON.stringify(updateData);
-
-  return apiFetch(`${url}/${id}`, {
+  return apiFetch(`${BASE_URL}/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -53,8 +52,8 @@ function updateBookmark(id, updateData) {
 }
 
 function deleteBookmark(id) {
-  return apiFetch(`${url}/${id}`, {
-    method: 'Delete',
+  return apiFetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE'
   });
 }
 
