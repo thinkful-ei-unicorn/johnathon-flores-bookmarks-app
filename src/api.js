@@ -1,19 +1,20 @@
+
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/johnathon/bookmarks';
 
-function apiFetch(...args) {
+function bookmarkApiFetch(...args) {
   let error;
   return fetch(...args)
     .then((response) => {
       if (!response.ok) {
-        error = {
-          code: response.status
-        };
-        if (!response.headers.get('Content-Type')
+        error = { code: response.status };
+        if (!response.headers
+          .get('Content-Type')
           .includes('json')) {
           error.message = response.statusText;
           return Promise.reject(error);
         }
       }
+
       return response.json();
     })
     .then((data) => {
@@ -21,45 +22,33 @@ function apiFetch(...args) {
         error.message = data.message;
         return Promise.reject(error);
       }
+
       return data;
     });
 }
-
-function getBookmark() {
-  return apiFetch(BASE_URL, {});
+function getBookmarks() {
+  return bookmarkApiFetch(`${BASE_URL}`);
 }
 
-function createBookmark(bookmark) {
-  let newBookmark = JSON.stringify(bookmark);
-  return apiFetch(BASE_URL, {
+function postBookmark(newBM) {
+  return bookmarkApiFetch(`${BASE_URL}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: newBookmark,
-  });
-}
-
-function updateBookmark(id, updateData) {
-  let updateBookmark = JSON.stringify(updateData);
-  return apiFetch(`${BASE_URL}/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: updateBookmark,
+    headers: { 'Content-Type': 'application/json' },
+    body: newBM
   });
 }
 
 function deleteBookmark(id) {
-  return apiFetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE'
+  return bookmarkApiFetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
   });
 }
 
+
+
 export default {
-  getBookmark,
-  createBookmark,
-  updateBookmark,
-  deleteBookmark,
+  getBookmarks,
+  postBookmark,
+  deleteBookmark
 };

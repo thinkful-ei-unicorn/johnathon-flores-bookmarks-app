@@ -3,88 +3,157 @@ body  {
     color: #304B4B;
     margin: 0;
     background-color: #F5F5F5;
+    font-size: 18px;
 }
 
-
-.main, .filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.bookmarks {
-    flex-direction: column;
+h1, h2{
     text-align: center;
 }
-
-.list-group {
-    min-height: 100vh;
-    flex-direction: column;
-    display: flex;
-}
-
-.center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 15px;
-    padding: 30px;
-}
-
-.item {
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.scroll {
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: lightblue;
-    width: 55vw;
-    height: 110px;
-    padding: 25px;
-    overflow: auto;
-}
-
-ul li {
-    list-style: none;
-}
-
-.hidden {
-    display: none;
-}
-
-#rating {
-    background-color: #F28F3B;
-    border: none;
-    color: white;
-    padding: 5px;
+  
+h1{
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-}
-
-.js-bookmark-item {
+  }
+  
+  h2{
+    font-size: 18px;
+  }
+  
+  button{
+    background-color: rgb(0, 218, 218);
+  }
+  
+  .controls{
     display: flex;
-    flex-direction: column;
-    border-style: solid;
-}
-
-#filterBookMark{
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: cadetblue;
+    height: 60px;
+  }
+  
+  .new{ 
+    margin-top: 10px;
+    margin-left: 10%;
+    height: 40px;
+    width: 100px;
+  }
+  
+  .filter{
+    margin-right: 10%;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+  }
+  
+  .create{
+    justify-content: center;
+    width: 90%;
+    border: 5px;
+    margin-right: 5%;
+  } 
+  
+  .newBookmark{
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    background-color: aliceblue;
+  }
+  
+  #title, #url, .newItemDesc{
+    justify-content: center;
+    margin-top: 6px;
+  }
+  
+  input{
+    height: 30px;
+  }
+  
+  textarea{
+    justify-content: left;
+    width: 95%;
+    height: 60px;
+  }
+  
+  #newRating{
+    height: 30px;
+    width: 70px;
+    margin: 5px;
+  }
+  
+  .add{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
+    flex-direction: row;
+    height: 40px;
+    width: 100px;
+    justify-content: center;
+    padding-top: 9px;
+    margin-top: 5px;
+  }
+  
+  ul{
+    justify-content: center;
+    padding-left: 5%;
+  }
+  
+  .bookmarkElement{
+    justify-content: center;
+    list-style-type: none;
+    border: solid 1px;
+    width: 90%;
+    margin-top: 10px;
+    background-color: aliceblue;
+  }
+  
+  .titleRating, .collapse{
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+  }
+  
+  .bookmarkHeader, .rating{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .bookmarkDescription{
+    text-align: justify;
+    width: 90%;
+  }
+  
+  .visRem{
+    display: flex;
+    justify-content: space-between;
+    background-color: cadetblue;
+  }
+  
+  .visitPage, .delete{
+    margin: 5px;
+    height: 50px;
+  }
 
-.error-message {
-    background-color: #304B4B;
-    color: white;
-}
+
 @media all and (min-width: 600px) {
     body {
-      
+        display: flex;
     }
-  }
+    .addRate{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    
+      #newRating{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+      }
+      
+      .add{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 9px;
+        margin-top: 20px;
+        margin-right: 5px;
+      }    
+}
