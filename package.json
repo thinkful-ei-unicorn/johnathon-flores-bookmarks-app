@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Johnftech/johnathon-flores-bookmarks-app/issues"
   },
-  "homepage": "https://github.com/Johnftech/johnathon-flores-bookmarks-app#readme"
+  "homepage": "https://github.com/Johnftech/johnathon-flores-bookmarks-app#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
 }

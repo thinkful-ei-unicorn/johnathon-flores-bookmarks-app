@@ -18,7 +18,6 @@ const store = {
         description: 'dolorum tempore deserunt',
         expanded: false
       } 
-      ...
     ],
     adding: false,
     error: null,
@@ -58,7 +57,11 @@ function generateBookmarkScrollBar() {
 /********** RENDER FUNCTION(S) **********/
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 //function renderPage()
+function render() {
+    const app = $('#app');
 
+
+}
 
 
 
@@ -113,7 +116,9 @@ function handleBookmarkScroll() {
         // listen to scroll bar js
 }
 
-function handle
+function handle() {
+    //something
+}
 
 /********** CALLBACKS **********/
 function handleBookmarks() {

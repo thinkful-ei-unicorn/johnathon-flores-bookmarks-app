@@ -18,7 +18,6 @@ const store = {
         description: 'dolorum tempore deserunt',
         expanded: false
       } 
-      ...
     ],
     adding: false,
     error: null,
