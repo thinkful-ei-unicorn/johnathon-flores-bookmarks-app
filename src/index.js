@@ -1,14 +1,14 @@
 import $ from 'jquery';
 import api from './api';
-import bookmarkList from './bookmark-list';
+import bookmark from './bookmark-list';
 import './index.css';
 
 function main() {
-  bookmarkList.generateMain();
-  bookmarkList.bindEventListeners();
+  bookmark.generateMainUI();
+  bookmark.bindEventListeners();
   api.getBookmarks()
     .then((bookmarks) => {
-      bookmarkList.render();
+      bookmark.render();
     });
 }
 

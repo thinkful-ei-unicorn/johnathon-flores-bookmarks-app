@@ -4,9 +4,11 @@ import api from './api';
 
 //HTML Generators
 
-function generateMain(){
-  console.log('the page is rendering');
-  $('#js-app').html(`<h1>My Bookmarks</h1>
+function generateMainUI(){
+  
+  $('#js-app').html(
+    `
+    <h1>My Bookmarks</h1>
     <section class='controls'>
         <button aria-label='add new bookmark'class='new' name='new bookmark'>New +</button>
         
@@ -20,14 +22,14 @@ function generateMain(){
         </label>
         </select>
     </section>
-    <section class='errPopUp'>
+    <section class='error-message'>
     </section>
-    <section class='bookmarkListHTML'>
+    <section class='bookmark-list-view'>
       
     </section>`);
 }
 
-function genAddNew() {
+function generateAddNewUI() {
   return `<section class='create'>
         <form aria-label='new bookmark form' name='new bookmark form' class='newBookmark' id='newBookmark'>
           <fieldset>
@@ -47,7 +49,7 @@ function genAddNew() {
               <textarea aria-label='enter description' name='desc' class='newItemDesc' id='newItemDesc'></textarea>
             </label>
               <br>
-          <div class='addRate'>
+          <div class='addRating'>
             <label for='new item rating'>Rating:
               <select aria-label='new bookmark rating' name='rating' id='newRating' class='newRating-select' default='1' required>
                 <option value='1'>1</option>
@@ -60,26 +62,29 @@ function genAddNew() {
             
           <label for='submit'>  
             <button aria-label='submit new bookmark' type='submit' class='add'>Add</button>
+            <span></span><button aria-label='cancel bookmark' type='submit' class='cancel'>Cancel</button>
           </label>
         </div>
           </fieldset>
         </form>
-      </section>`;
+      </section>
+  `;
 }
 
-function genBMCondensed(bookmark) {
-  return `<li class='bookmarkElement condensed' id='${bookmark.id}'>
+function generateCondensedViewUI(bookmark) {
+  return `
+  <li class='bookmarkElement condensed' id='${bookmark.id}'>
       <button class='titleRating'>
       <h2 class='bookmarkHeader'>${bookmark.title}</h2>
     <div class='rating'>
     <p class="rating-total">${bookmark.rating === null ? 'No rating' : bookmark.rating}</p>
     </div>
     </button>
-  </li>`;
+  </li>
+  `;
 }
 
-function genBMExpand(bookmark) {
-  console.log('expanding bookmark...');
+function generateExpandedViewUI(bookmark) {
   return ` <li class='bookmarkElement expanded' id='${bookmark.id}'>
         <button class='collapse'>
           <h2 class='bookmarkHeader'>${bookmark.title}</h2>
@@ -96,7 +101,7 @@ function genBMExpand(bookmark) {
       </section>`;
 }
 
-function genErr(error){
+function generateError(error){
   return `
       <div class='error-message'>
         <h3>--ERROR--</h3>
@@ -105,68 +110,60 @@ function genErr(error){
       </div>`;
 }
 
-
-
 //String Generators
 
-function genBMString(bookmarkList) {
+function generateBookmarkString(bookmarkList) {
   const bookmarkHTML = bookmarkList.map((bookmark) => {
     if (bookmark.expanded === false) {
-      return genBMCondensed(bookmark);
+      return generateCondensedViewUI(bookmark);
     } else {
-      return genBMExpand(bookmark);
+      return generateExpandedViewUI(bookmark);
     }
   });
   return bookmarkHTML.join('');
 }
 
-function genFilteredBMString(bookmarks) {
+function generateFilteredViewtring(bookmarks) {
   let html = bookmarks.map((bookmark) => {
     if (bookmark.rating >= store.filter) {
       if (bookmark.expanded === true) {
-        return genBMExpand(bookmark);
+        return generateExpandedViewUI(bookmark);
       } else {
-        return genBMCondensed(bookmark);
+        return generateCondensedViewUI(bookmark);
       }
     }
   });
   return html.join('');
 }
 
-
-
-//Render Functions
-
-function renderErr(){
+//render functions
+function renderError(){
   if (store.error) {
-    const err = genErr(store.error);
-    $('.errPopUp').html(err);
+    const err = generateError(store.error);
+    $('.error-message').html(err);
   } else {
-    $('.errPopUp').empty();
+    $('.error-message').empty();
   }
 }
 
 function render() {
-  renderErr();
+  renderError();
   if (store.adding) {
-    let html = genAddNew();
-    $('.bookmarkListHTML').html(html);
+    let html = generateAddNewUI();
+    $('.bookmark-list-view').html(html);
   } else if (store.filter === 0) {
-    let listHtml = genBMString(store.bookmarks);
+    let listHtml = generateBookmarkString(store.bookmarks);
     let html = `<ul class='bookmark-list'>${listHtml}</ul>`;
-    $('.bookmarkListHTML').html(html);
+    $('.bookmark-list-view').html(html);
   } else {
-    let listHtml = genFilteredBMString(store.bookmarks);
+    let listHtml = generateFilteredViewtring(store.bookmarks);
     let html = `<ul class='bookmark-list'>${listHtml}</ul>`;
-    $('.bookmarkListHTML').html(html);
+    $('.bookmark-list-view').html(html);
   }
 }
 
-
-
-//serialize/stringify JSON
-
 $.fn.extend({
+  // this function serializes JSON
   serializeJson: function () {
     const formData = new FormData(this[0]);
     const obj = {};
@@ -187,17 +184,16 @@ function handleAddNew() {
 }
 
 function handleSubmitNew() {
-  $('.bookmarkListHTML').on('submit', 'form', function (event) {
+  $('.bookmark-list-view').on('submit', 'form', function (event) {
     event.preventDefault();
     store.adding = false;
-    let newBM = $(event.target).serializeJson();
-    console.log(newBM);
-    api.postBookmark(newBM).then((newEntry) => {
+    let newBookmark = $(event.target).serializeJson();
+    api.postBookmark(newBookmark).then((newEntry) => 
+    {
       store.addBookmark(newEntry);
       render();
     })
-      .catch((error) => {
-        console.log(error);
+    .catch((error) => {
         store.setError(error.message);
         render();
       });
@@ -213,28 +209,26 @@ function handleFilter() {
 }
 
 function handleExpand() {
-  $('.bookmarkListHTML').on('click', '.titleRating', function (event) {
-    console.log('clicked expand...');
-    let targetId = $(event.target).closest('li').attr('id');
-    console.log(`${targetId}`);
-    store.findAndUpdate(targetId, { expanded: true });
+  $('.bookmark-list-view').on('click', '.titleRating', function (event) {
+    let targetBookmark = $(event.target).closest('li').attr('id');
+    store.findAndUpdate(targetBookmark, { expanded: true });
     render();
   });
 }
 
 function handleCollapse() {
-  $('.bookmarkListHTML').on('click', '.collapse', function (event) {
-    let targetId = $(event.target).closest('li').attr('id');
-    store.findAndUpdate(targetId, { expanded: false });
+  $('.bookmark-list-view').on('click', '.collapse', function (event) {
+    let targetBookmark = $(event.target).closest('li').attr('id');
+    store.findAndUpdate(targetBookmark, { expanded: false });
     render();
   });
 }
 
 function handleDelete() {
-  $('.bookmarkListHTML').on('click', '.delete', function (event) {
-    let targetId = $(event.target).closest('li').attr('id');
-    api.deleteBookmark(targetId);
-    store.findAndDelete(targetId);
+  $('.bookmark-list-view').on('click', '.delete', function (event) {
+    let targetBookmark = $(event.target).closest('li').attr('id');
+    api.deleteBookmark(targetBookmark);
+    store.findAndDelete(targetBookmark);
     render();
   });
 }
@@ -246,8 +240,14 @@ function handleCloseError(){
   });
 }
 
-
-
+function handleCancelButton(){
+  $('.bookmark-list-view').on('click', '.cancel', (event) =>
+  {
+    event.preventDefault();
+    store.adding = false;
+    render();
+  });
+}
 
 function bindEventListeners() {
   handleAddNew();
@@ -257,10 +257,11 @@ function bindEventListeners() {
   handleCollapse();
   handleDelete();
   handleCloseError();
+  handleCancelButton();
 }
 
 export default {
-  generateMain,
+  generateMainUI,
   bindEventListeners,
   render
 };

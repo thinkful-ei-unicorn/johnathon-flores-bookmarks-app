@@ -22,7 +22,6 @@ function bookmarkApiFetch(...args) {
         error.message = data.message;
         return Promise.reject(error);
       }
-
       return data;
     });
 }
@@ -44,8 +43,6 @@ function deleteBookmark(id) {
     headers: { 'Content-Type': 'application/json' }
   });
 }
-
-
 
 export default {
   getBookmarks,

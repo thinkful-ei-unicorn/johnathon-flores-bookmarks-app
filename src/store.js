@@ -43,5 +43,3 @@ export default {
   findAndDelete,
   setError
 };
-
-//changed the findAndDeleteStore to findAndDelete
