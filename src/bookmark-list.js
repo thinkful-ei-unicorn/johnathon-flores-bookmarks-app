@@ -51,7 +51,7 @@ function generateAddNewUI() {
               <br>
           <div class='addRating'>
             <label for='new item rating'>Rating:
-              <select aria-label='new bookmark rating' name='rating' id='newRating' class='newRating-select' default='1' required>
+              <select aria-label='new bookmark rating' name='rating' id='rating' class='rating-select' default='1' required>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
@@ -94,7 +94,7 @@ function generateExpandedViewUI(bookmark) {
           </div>
         </button>
           <p class='bookmarkDescription'>${bookmark.desc === '' ? 'No description' : bookmark.desc}</p>
-        <div class='visRem'>
+        <div class='visit'>
           <button class='visitPage'><a href=${bookmark.url} target="blank" id="bookmarkLink">Visit Page</a></button>
           <button class='delete'>Remove</button>
         </div>
