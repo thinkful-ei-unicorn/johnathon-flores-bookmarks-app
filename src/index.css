@@ -1,0 +1,52 @@
+.main, .filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bookmarks {
+    flex-direction: column;
+    text-align: center;
+}
+
+.list-group {
+    min-height: 100vh;
+    flex-direction: column;
+    display: flex;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+    padding: 30px;
+}
+
+.item {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.scroll {
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: lightblue;
+    width: 55vw;
+    height: 110px;
+    padding: 25px;
+    overflow: auto;
+}
+
+ul li {
+    list-style: none;
+}
+
+@media all and (min-width: 600px) {
+    body {
+        background-color: red;
+      
+    }
+  }
